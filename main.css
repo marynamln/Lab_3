@@ -220,7 +220,7 @@ body {
 }
 
 /* продукти що залишилися */
-.other-prod{
+.not-buy-products-section{
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -228,11 +228,7 @@ body {
     height: 25%;
 }
 
-.other-prod[id="cookies"]{
-    border: none;
-}
-
-.pr-buy{
+.not-pr-buy{
     display: flex;
     background-color: lightgray;
     justify-content: left;
@@ -251,6 +247,7 @@ body {
     align-items: center;
     background-color: orange;
     border-radius: 10px;
+    border: none;
     display: flex;
     height: 20px;
     width: 20px;
@@ -258,6 +255,45 @@ body {
     color: white;
     font-family: Arial, serif;
     margin-left: 2px;
+}
+
+.buy-products-section{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    height: 25%;
+    border: none;
+}
+
+.pr-buy{
+    display: flex;
+    background-color: lightgray;
+    justify-content: left;
+    align-items: center;
+    height: 25px;
+    padding: 5px;
+    border-radius: 5px;
+    margin-left: 15px;
+    font-family: Arial, serif;
+    font-size: medium;
+    color: #4f5762;
+    text-decoration: line-through;
+}
+
+.amount-pr-buy{
+    justify-content: center;
+    align-items: center;
+    background-color: orange;
+    border-radius: 10px;
+    border: none;
+    display: flex;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+    color: white;
+    font-family: Arial, serif;
+    margin-left: 2px;
+    text-decoration: line-through;
 }
 
 /* бедж */
@@ -316,14 +352,6 @@ body {
 [data-tooltip]:hover::after {
     opacity: 1;
     visibility: visible;
-}
-
-.pr-buy[id="tomato"]{
-    text-decoration: line-through;
-}
-
-.amount[id="2"]{
-    text-decoration: line-through;
 }
 
 .add-button:active,
