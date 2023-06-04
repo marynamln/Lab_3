@@ -124,6 +124,11 @@ body {
     background-color: darkred;
 }
 
+.minus-button[id="1"]{
+    background-color: #9a7575;
+    pointer-events: none;
+}
+
 .plus-button,
 .minus-button {
     border: none;

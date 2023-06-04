@@ -18,7 +18,7 @@
                 <button class="add-button" data-tooltip="Додати продукт">Додати</button>
             </section>
             <section class="product-item-buy">
-                <input type="text" class="product-buy" value="Помідори" />
+                <input type="text" class="product-buy" value="Помідори" readonly/>
                 <section class="number-only">
                     <input type="text" class="productNumber" value="2" readonly/>
                 </section>
@@ -41,8 +41,8 @@
             <section class="product-item">
                 <input type="text" class="product" value="Сир" />
                 <section class="number-of-products">
-                    <button class="minus-button" data-tooltip="Видалити одиницю">-</button>
-                    <input type="text" class="productNumber" value="3" readonly/>
+                    <button class="minus-button" data-tooltip="Видалити одиницю" id="1" disabled>-</button>
+                    <input type="text" class="productNumber" value="1" readonly/>
                     <button class="plus-button" data-tooltip="Додати одиницю">+</button>
                 </section>
                 <section class="buy-pr">
@@ -58,7 +58,7 @@
             <section class="not-buy-products-section">
                 <span class="not-pr-buy">Печиво<input class="amount" value="2" readonly/>
                 </span>
-                <span class="not-pr-buy">Сир<input class="amount" value="3" readonly/>
+                <span class="not-pr-buy">Сир<input class="amount" value="1" readonly/>
                 </span>
             </section>
             <section class="inscription">
