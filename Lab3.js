@@ -194,6 +194,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 minusButton.style.background = 'darkred';
                 minusButton.disabled = false;
                 minusButton.style.pointerEvents = 'visible';
+
+                if(productNumber > 9){
+                    productNumberInput.style.width = '32px';
+                }
             });
 
             minusButton.addEventListener('click', () => {
@@ -211,6 +215,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     minusButton.disabled = true;
                     minusButton.style.pointerEvents = 'none';
                     minusButton.style.background = '#9a7575';
+                }
+
+                if(productNumber < 10){
+                    productNumberInput.style.width = '23px';
                 }
             });
 
@@ -261,7 +269,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 minusButton.style.display = 'inline-block';
                 plusButton.style.display = 'inline-block';
 
-                productNumber.style.margin = '0 5px';
+                productNumber.style.marginLeft = '5px';
 
                 // Заміна секції "not-buy-pr" на секцію "buy-pr"
                 buyPrSection.appendChild(buyProductButton);
@@ -293,6 +301,10 @@ document.addEventListener('DOMContentLoaded', function() {
             minusButton.style.background = 'darkred';
             minusButton.disabled = false;
             minusButton.style.pointerEvents = 'visible';
+
+            if (productNumber > 9){
+                number.style.width = '32px';
+            }
         });
 
         minusButton.addEventListener('click', () => {
@@ -307,6 +319,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 minusButton.disabled = true;
                 minusButton.style.pointerEvents = 'none';
                 minusButton.style.background = '#9a7575';
+            }
+
+            if (productNumber < 10){
+                number.style.width = '23px';
             }
         });
 
@@ -362,7 +378,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const notPrBuyItems = nBuyProductSection.querySelectorAll('.not-pr-buy');
             notPrBuyItems.forEach(function(prBuyItem) {
                 if (prBuyItem.textContent.includes(productName)) {
-                    prBuyItem.remove();
+                    //prBuyItem.remove();
+                    prBuyItem.style.display = 'none';
                 }
             });
 
@@ -385,6 +402,7 @@ document.addEventListener('DOMContentLoaded', function() {
             numberOnly.classList.add('productNumber');
             numberOnly.value = productNumber.value;
             numberOnly.readOnly = true;
+            numberOnly.style.margin = '0';
 
             numberBuySection.appendChild(numberOnly);
 
@@ -395,6 +413,18 @@ document.addEventListener('DOMContentLoaded', function() {
             buyProductButton.classList.add('not-buy-product');
             buyProductButton.dataset.tooltip = 'Не куплено';
             buyProductButton.textContent = 'Не куплено';
+            buyProductButton.addEventListener('click', function () {
+                productNotBuyItem.style.display = 'flex';
+                productBuySection.style.display = 'none';
+                prBuyItem.style.display = 'none';
+                const notPrBuyItems = nBuyProductSection.querySelectorAll('.not-pr-buy');
+                notPrBuyItems.forEach(function(prBuyItem) {
+                    if (prBuyItem.textContent.includes(productName)) {
+                        //prBuyItem.remove();
+                        prBuyItem.style.display = 'flex';
+                    }
+                });
+            });
 
             noBuyPrSection.appendChild(buyProductButton);
 
@@ -403,7 +433,7 @@ document.addEventListener('DOMContentLoaded', function() {
             productBuySection.appendChild(noBuyPrSection);
 
             productNotBuyItem.parentElement.insertBefore(productBuySection, productNotBuyItem);
-            productNotBuyItem.remove();
+            //productNotBuyItem.remove();
         });
     });
 
@@ -436,7 +466,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const prBuyItems = buyProductSection.querySelectorAll('.pr-buy');
             prBuyItems.forEach(function(prBuyItem) {
                 if (prBuyItem.textContent.includes(productBuyName)) {
-                    prBuyItem.remove();
+                    //prBuyItem.remove();
+                    prBuyItem.style.display = 'none';
                 }
             });
 
@@ -513,6 +544,17 @@ document.addEventListener('DOMContentLoaded', function() {
             buyProductButton.classList.add('buy-product');
             buyProductButton.dataset.tooltip = 'Куплено';
             buyProductButton.textContent = 'Куплено';
+            buyProductButton.addEventListener('click', function () {
+                productItem.style.display = 'flex';
+                productSection.style.display = 'none';
+                notPrBuyItem.style.display = 'none';
+                prBuyItems.forEach(function(prBuyItem) {
+                    if (prBuyItem.textContent.includes(productBuyName)) {
+                        //prBuyItem.remove();
+                        prBuyItem.style.display = 'flex';
+                    }
+                });
+            });
 
             const deleteButton = document.createElement('button');
             deleteButton.classList.add('not-button');
@@ -533,62 +575,7 @@ document.addEventListener('DOMContentLoaded', function() {
             productSection.appendChild(buyPrSection);
 
             productItem.parentElement.insertBefore(productSection, productItem);
-            productItem.remove();
+            //productItem.remove();
         });
     });
 });
-
-/*
-const productItem = buyProductButton.parentElement.parentElement;
-                const productName = productItem.querySelector('.product').value;
-                const minusButton = productItem.querySelector('.minus-button');
-                const plusButton = productItem.querySelector('.plus-button');
-                const productNumber = productItem.querySelector('.productNumber');
-                const prBuySection = document.querySelector('.buy-products-section');
-
-                // Зміна стилю назви товару на перекреслену
-                const productInput = productItem.querySelector('.product');
-                productInput.style.textDecoration = 'line-through';
-
-                minusButton.style.display = 'none';
-                plusButton.style.display = 'none';
-                productNumber.style.margin = '0';
-
-                // Заміна секції "not-buy-pr" на секцію "buy-pr"
-                const notBuyProductSection = document.createElement('section');
-                notBuyProductSection.classList.add('not-buy-pr');
-
-                const notBuyProductButton = document.createElement('button');
-                notBuyProductButton.classList.add('not-buy-product');
-                notBuyProductButton.dataset.tooltip = 'Не куплено';
-                notBuyProductButton.textContent = 'Не куплено';
-
-                notBuyProductSection.appendChild(notBuyProductButton);
-
-                const buyPrSection = productItem.querySelector('.buy-pr');
-                productItem.replaceChild(notBuyProductSection, buyPrSection);
-
-                // Додавання продукту в секції buy-products-section
-                const prBuyItem = document.createElement('span');
-                prBuyItem.classList.add('pr-buy');
-                prBuyItem.textContent = productName;
-
-                const amount = document.createElement('input');
-                amount.type = 'text';
-                amount.classList.add('amount-pr-buy');
-                amount.style.margin = '0';
-                amount.value = productNumber.value;
-                amount.readOnly = true;
-
-                prBuyItem.appendChild(amount);
-                prBuySection.appendChild(prBuyItem);
-
-                // Видалення секції продукту з секції not-buy-products-section
-                const nBuyProductSection = document.querySelector('.not-buy-products-section');
-                const notPrBuyItems = nBuyProductSection.querySelectorAll('.not-pr-buy');
-                notPrBuyItems.forEach(function(prBuyItem) {
-                    if (prBuyItem.textContent.includes(productName)) {
-                        prBuyItem.remove();
-                    }
-                });
- */
