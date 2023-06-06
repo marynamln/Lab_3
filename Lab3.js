@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
             searchField.value = '';
             searchField.focus();
 
-            productInput.addEventListener('blur', () => {
+            productInput.addEventListener('change', () => {
                 const updatedProductName = productInput.value;
                 const notPrBuyName = notPrBuySection.querySelector('.not-pr-buy');
                 notPrBuyName.textContent = updatedProductName;
@@ -334,7 +334,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         const productName = myProductInput.value;
-        myProductInput.addEventListener('blur', () => {
+        myProductInput.addEventListener('change', () => {
             productNames.splice(index,1);
             const nBuyProductSection = document.querySelector('.not-buy-products-section');
             const notPrBuyItems = nBuyProductSection.querySelectorAll('.not-pr-buy');
@@ -413,6 +413,7 @@ document.addEventListener('DOMContentLoaded', function() {
             buyProductButton.classList.add('not-buy-product');
             buyProductButton.dataset.tooltip = 'Не куплено';
             buyProductButton.textContent = 'Не куплено';
+
             buyProductButton.addEventListener('click', function () {
                 productNotBuyItem.style.display = 'flex';
                 productBuySection.style.display = 'none';
@@ -423,6 +424,23 @@ document.addEventListener('DOMContentLoaded', function() {
                         //prBuyItem.remove();
                         prBuyItem.style.display = 'flex';
                     }
+                });
+
+                const prName = productName.value;
+                productName.addEventListener('change', () => {
+                    //productNames.splice(index,1);
+                    const nBuyProductSection = document.querySelector('.not-buy-products-section');
+                    const notPrBuyItems = nBuyProductSection.querySelectorAll('.not-pr-buy');
+                    notPrBuyItems.forEach(function (prBuyItem) {
+                        if (prBuyItem.textContent.includes(prName)) {
+                            const updatedProductName = productName.value;
+                            prBuyItem.textContent = updatedProductName;
+                            prBuyItem.appendChild(amount);
+                            productNames.push(updatedProductName);
+
+                            productName.value = updatedProductName;
+                        }
+                    });
                 });
             });
 
@@ -544,6 +562,7 @@ document.addEventListener('DOMContentLoaded', function() {
             buyProductButton.classList.add('buy-product');
             buyProductButton.dataset.tooltip = 'Куплено';
             buyProductButton.textContent = 'Куплено';
+
             buyProductButton.addEventListener('click', function () {
                 productItem.style.display = 'flex';
                 productSection.style.display = 'none';
@@ -552,6 +571,23 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (prBuyItem.textContent.includes(productBuyName)) {
                         //prBuyItem.remove();
                         prBuyItem.style.display = 'flex';
+                    }
+                });
+            });
+
+            const productName = productInput.value;
+            productInput.addEventListener('change', () => {
+                //productNames.splice(index,1);
+                const nBuyProductSection = document.querySelector('.not-buy-products-section');
+                const notPrBuyItems = nBuyProductSection.querySelectorAll('.not-pr-buy');
+                notPrBuyItems.forEach(function(prBuyItem) {
+                    if (prBuyItem.textContent.includes(productName)) {
+                        const updatedProductName = productInput.value;
+                        prBuyItem.textContent = updatedProductName;
+                        prBuyItem.appendChild(amount);
+                        productNames.push(updatedProductName);
+
+                        productInput.value = updatedProductName;
                     }
                 });
             });
